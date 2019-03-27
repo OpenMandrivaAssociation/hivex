@@ -13,6 +13,7 @@ Group: System/Libraries
 URL: http://libguestfs.org/
 License: GPL
 BuildRequires: ocaml ocaml-findlib perl(Pod::Html)
+BuildRequires: pkgconfig(libxml-2.0)
 BuildRequires: pkgconfig(python3)
 BuildRequires: make
 Requires: %{libname} = %{EVRD}
