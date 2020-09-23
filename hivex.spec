@@ -4,15 +4,18 @@
 %define libname %mklibname hivex 0
 %define devname %mklibname -d hivex
 
+%global __requires_exclude ^ocamlx.*$
+
 Name: hivex
-Version: 1.3.18
-Release: 2
+Version: 1.3.19
+Release: 1
 Source0: http://download.libguestfs.org/hivex/hivex-%{version}.tar.gz
 Summary: Tool for editing the Registry in Windows guest images
 Group: System/Libraries
 URL: http://libguestfs.org/
 License: GPL
 BuildRequires: ocaml ocaml-findlib perl(Pod::Html)
+BuildRequires: ruby-devel
 BuildRequires: pkgconfig(libxml-2.0)
 BuildRequires: pkgconfig(python3)
 BuildRequires: make
@@ -62,6 +65,14 @@ Requires: %{libname} = %{EVRD}
 %description -n ocaml-%{name}
 OCaml bindings for the Hivex Windows registry reader
 
+%package -n ruby-%{name}
+Summary: Ruby bindings for the Hivex Windows registry reader
+Group: System/Libraries
+Requires: %{libname} = %{EVRD}
+
+%description -n ruby-%{name}
+Ruby bindings for the Hivex Windows registry reader
+
 %prep
 %autosetup -p1
 %configure
@@ -95,3 +106,7 @@ OCaml bindings for the Hivex Windows registry reader
 %files -n python-%{name}
 %{py_platsitedir}/hivex
 %{py_platsitedir}/*.so
+
+%files -n ruby-%{name}
+%{_libdir}/ruby/site_ruby/_hivex.so
+%{_datadir}/ruby/site_ruby/*/hivex.rb
