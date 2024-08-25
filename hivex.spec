@@ -7,8 +7,8 @@
 %global __requires_exclude ^ocamlx.*$
 
 Name: hivex
-Version:	1.3.21
-Release:	2
+Version:	1.3.23
+Release:	1
 Source0: http://download.libguestfs.org/hivex/hivex-%{version}.tar.gz
 Summary: Tool for editing the Registry in Windows guest images
 Group: System/Libraries
