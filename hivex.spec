@@ -12,7 +12,7 @@ Release:	1
 Source0: http://download.libguestfs.org/hivex/hivex-%{version}.tar.gz
 Summary: Tool for editing the Registry in Windows guest images
 Group: System/Libraries
-URL: http://libguestfs.org/
+URL: https://libguestfs.org/
 License: GPL
 BuildRequires: ocaml ocaml-findlib perl(Pod::Html)
 BuildRequires: ruby-devel
