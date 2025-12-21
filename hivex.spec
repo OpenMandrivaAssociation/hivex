@@ -14,6 +14,10 @@ Summary: Tool for editing the Registry in Windows guest images
 Group: System/Libraries
 URL: https://libguestfs.org/
 License: GPL
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
 BuildRequires: ocaml ocaml-findlib perl(Pod::Html)
 BuildRequires: ruby-devel
 BuildRequires: pkgconfig(libxml-2.0)
