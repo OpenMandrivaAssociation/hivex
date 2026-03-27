@@ -8,7 +8,7 @@
 
 Name: hivex
 Version:	1.3.24
-Release:	2
+Release:	3
 Source0: http://download.libguestfs.org/hivex/hivex-%{version}.tar.gz
 Summary: Tool for editing the Registry in Windows guest images
 Group: System/Libraries
