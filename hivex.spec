@@ -8,7 +8,7 @@
 
 Name: hivex
 Version:	1.3.24
-Release:	3
+Release:	4
 Source0: http://download.libguestfs.org/hivex/hivex-%{version}.tar.gz
 Summary: Tool for editing the Registry in Windows guest images
 Group: System/Libraries
@@ -18,7 +18,9 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool-base
 BuildRequires:	slibtool
-BuildRequires: ocaml ocaml-findlib perl(Pod::Html)
+BuildRequires: ocaml
+BuildRequires: ocaml-compiler
+BuildRequires: ocaml-findlib perl(Pod::Html)
 BuildRequires: ruby-devel
 BuildRequires: pkgconfig(libxml-2.0)
 BuildRequires: pkgconfig(python3)
