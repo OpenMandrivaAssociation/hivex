@@ -6,25 +6,26 @@
 
 %global __requires_exclude ^ocamlx.*$
 
-Name: hivex
+Name:		hivex
 Version:	1.3.24
 Release:	5
-Source0: http://download.libguestfs.org/hivex/hivex-%{version}.tar.gz
-Summary: Tool for editing the Registry in Windows guest images
-Group: System/Libraries
-URL: https://libguestfs.org/
-License: GPL
+Source0:	http://download.libguestfs.org/hivex/hivex-%{version}.tar.gz
+Summary:	Tool for editing the Registry in Windows guest images
+Group:		System/Libraries
+URL:		https://libguestfs.org/
+License:	GPL
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool-base
 BuildRequires:	slibtool
-BuildRequires: ocaml
-BuildRequires: ocaml-compiler
-BuildRequires: ocaml-findlib perl(Pod::Html)
-BuildRequires: pkgconfig(libxml-2.0)
-BuildRequires: pkgconfig(python3)
-BuildRequires: make
-Requires: %{libname} = %{EVRD}
+BuildRequires:	ocaml
+BuildRequires:	ocaml-compiler
+BuildRequires:	ocaml-findlib
+BuildRequires:	perl(Pod::Html)
+BuildRequires:	pkgconfig(libxml-2.0)
+BuildRequires:	pkgconfig(python3)
+BuildRequires:	make
+Requires:	%{libname} = %{EVRD}
 
 %description
 Hivex is a library for extracting the contents of Windows Registry "hive"
@@ -40,35 +41,66 @@ Instead it makes the file available through a C API, and then wraps this
 API in higher level scripting and GUI tools.
 
 %package -n %{libname}
-Summary: Library for editing the Registry in Windows guest images
-Group: System/Libraries
+Summary:	Library for editing the Registry in Windows guest images
+Group:		System/Libraries
 
 %description -n %{libname}
 Library for editing the Registry in Windows guest images
 
 %package -n %{devname}
-Summary: Development files for the Hivex Windows registry reader
-Group: Development/Libraries
-Requires: %{libname} = %{EVRD}
+Summary:	Development files for the Hivex Windows registry reader
+Group:		Development/Libraries
+Requires:	%{libname} = %{EVRD}
 
 %description -n %{devname}
 Development files for the Hivex Windows registry reader
 
 %package -n python-%{name}
-Summary: Python bindings for the Hivex Windows registry reader
-Group: System/Libraries
-Requires: %{libname} = %{EVRD}
+Summary:	Python bindings for the Hivex Windows registry reader
+Group:		System/Libraries
+Requires:	%{libname} = %{EVRD}
 
 %description -n python-%{name}
 Python bindings for the Hivex Windows registry reader
 
 %package -n ocaml-%{name}
-Summary: OCaml bindings for the Hivex Windows registry reader
-Group: System/Libraries
-Requires: %{libname} = %{EVRD}
+Summary:	OCaml bindings for the Hivex Windows registry reader
+Group:		System/Libraries
+Requires:	%{libname} = %{EVRD}
 
 %description -n ocaml-%{name}
 OCaml bindings for the Hivex Windows registry reader
 
-%{_libdir}/ruby/site_ruby/_hivex.so
-%{_datadir}/ruby/site_ruby/*/hivex.rb
+%prep
+%autosetup -p1
+%configure --disable-ruby
+
+%build
+%make_build
+
+%install
+%make_install
+%find_lang %{name}
+
+%files -f %{name}.lang
+%{_bindir}/hivexget
+%{_bindir}/hivexml
+%{_bindir}/hivexsh
+%{_mandir}/man1/*.1*
+
+%files -n %{libname}
+%{_libdir}/libhivex.so.0*
+
+%files -n %{devname}
+%{_includedir}/hivex.h
+%{_libdir}/pkgconfig/hivex.pc
+%{_libdir}/libhivex.so
+%{_mandir}/man3/*.3*
+
+%files -n ocaml-%{name}
+%{_libdir}/ocaml/hivex
+%{_libdir}/ocaml/stublibs/dllmlhivex.so*
+
+%files -n python-%{name}
+%{py_platsitedir}/hivex
+%{py_platsitedir}/*.so
